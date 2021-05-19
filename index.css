@@ -1,0 +1,23 @@
+.k-feature-view {
+  display: flex;
+}
+.k-feature-view .hidden {
+  visibility: hidden;
+  height: 0;
+}
+.k-feature-view .intro {
+  width: 50%;
+}
+.k-feature-view h5 {
+  padding-bottom: 2rem;
+}
+.k-feature-view .heading {
+  max-width: 10rem;
+  display: block;
+}
+.k-feature-view .image {
+  width: 50%;
+}
+.k-feature-view img {
+  width: 100%;
+}

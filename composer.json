@@ -1,0 +1,26 @@
+{
+    "name": "jonataneriksson/kirby-block-jotform",
+    "description": "Kirby Jotform Block Plugin",
+    "type": "kirby-plugin",
+    "license": "MIT",
+    "authors": [
+      {
+          "name": "Jonatan Eriksson",
+          "email": "jonatan@tsto.org",
+          "homepage": "https://tsto.org"
+      }
+    ],
+    "require": {
+      "jotform/jotform-api-php": "dev-master",
+      "getkirby/composer-installer": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "jotform\\jotform-api-php\\": "src/"
+        }
+    },
+    "config": {
+      "optimize-autoloader": true
+    },
+    "minimum-stability": "beta"
+}

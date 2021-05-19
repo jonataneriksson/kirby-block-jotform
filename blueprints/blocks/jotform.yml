@@ -1,0 +1,25 @@
+name: JotForm
+icon: image
+wysiwyg: true
+tabs:
+  content:
+    fields:
+      image:
+        label: Featured Image
+        type: files
+        layout: cards
+        preset: image
+        query: page.images
+        size: huge
+        width: 1/1
+        multiple: false
+      srcset:
+        type: hidden
+      ratio:
+        type: hidden
+      meta:
+        type: hidden
+      page:
+        label: Link to Page
+        type: pages
+        multiple: false
