@@ -1,7 +1,7 @@
-import SlideBlock from './components/slideblock.vue';
+import JotformBlock from './components/JotForm.vue';
 
 panel.plugin('jonataneriksson/kirby-slide-block', {
   blocks: {
-    slide: SlideBlock
+    jotform: JotformBlock
   }
 });

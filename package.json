@@ -4,7 +4,7 @@
     "build": "parcel build src/index.js --no-source-maps --experimental-scope-hoisting -d ./"
   },
   "version": {
-    "version": "1.2.3"
+    "version": "0.0.1"
   },
   "posthtml": {
     "recognizeSelfClosing": true

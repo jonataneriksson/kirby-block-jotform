@@ -9,3 +9,8 @@
 
 # Composer files
 /vendor
+
+# Content
+# ---------------
+content/*
+!content/*

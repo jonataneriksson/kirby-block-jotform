@@ -8821,7 +8821,7 @@ if (inBrowser) {
 
 var _default = Vue;
 exports.default = _default;
-},{}],"components/slideblock.vue":[function(require,module,exports) {
+},{}],"components/JotForm.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8836,55 +8836,53 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 var _default = {
-  computed: {
-    imageField: function imageField() {
-      return this.content.image[0] || {};
-    },
-    pageField: function pageField() {
-      return this.content.page[0] || {};
-    }
+  props: ['endpoints'],
+  data: function data() {
+    return {
+      jotform: [],
+      options: []
+    };
   },
-  watch: {
-    'pageField': {
-      immediate: true,
-      handler: function handler() {
-        this.update();
-      }
+  created: function created() {
+    this.load();
+  },
+  methods: {
+    updateAll: function updateAll() {
+      this.content.questiontext = this.jotform[this.content.question].text;
+      this.update();
     },
-    'imageField.image.cards.srcset': {
-      immediate: true,
-      handler: function handler(srcset) {
-        this.content.srcset = srcset;
-        this.update();
-      }
-    },
-    'imageField.link': {
-      immediate: true,
-      handler: function handler(link) {
-        var _this = this;
+    load: function load() {
+      var _this = this;
 
-        if (link) {
-          this.$api.get(link).then(function (file) {
-            _this.content.ratio = file.dimensions.ratio;
-            _this.content.meta = file.content;
-
-            _this.update();
-          });
-        }
-      }
+      this.$api.get("jotform").then(function (jotform) {
+        _this.jotform = jotform;
+        _this.options = Object.keys(jotform).map(function (id) {
+          return {
+            value: jotform[id].qid,
+            text: jotform[id].text
+          };
+        });
+      });
     }
   }
 };
 exports.default = _default;
-        var $f5d561 = exports.default || module.exports;
+        var $19d773 = exports.default || module.exports;
       
-      if (typeof $f5d561 === 'function') {
-        $f5d561 = $f5d561.options;
+      if (typeof $19d773 === 'function') {
+        $19d773 = $19d773.options;
       }
     
         /* template */
-        Object.assign($f5d561, (function () {
+        Object.assign($19d773, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -8892,53 +8890,29 @@ exports.default = _default;
   return _c(
     "div",
     [
-      _c("k-files-field", {
-        attrs: {
-          label: "Image",
-          layout: "cards",
-          size: "huge",
-          multiple: "false",
-          uploads: "true",
-          endpoints: {
-            field:
-              _vm.$attrs.endpoints.field +
-              "/fieldsets/" +
-              _vm.fieldset.type +
-              "/fields/image"
-          }
-        },
-        model: {
-          value: _vm.content.image,
-          callback: function($$v) {
-            _vm.$set(_vm.content, "image", $$v)
-          },
-          expression: "content.image"
-        }
-      }),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c("k-pages-field", {
-        attrs: {
-          label: "Page",
-          layout: "list",
-          multiple: "false",
-          endpoints: {
-            field:
-              _vm.$attrs.endpoints.field +
-              "/fieldsets/" +
-              _vm.fieldset.type +
-              "/fields/page"
-          }
-        },
-        model: {
-          value: _vm.content.page,
-          callback: function($$v) {
-            _vm.$set(_vm.content, "page", $$v)
-          },
-          expression: "content.page"
-        }
-      })
+      _vm.content
+        ? _c("k-select-field", {
+            attrs: {
+              options: _vm.options,
+              required: false,
+              label: "Kysymys",
+              name: "select",
+              endpoints: _vm.endpoints
+            },
+            on: {
+              input: function($event) {
+                return _vm.updateAll()
+              }
+            },
+            model: {
+              value: _vm.content.question,
+              callback: function($$v) {
+                _vm.$set(_vm.content, "question", $$v)
+              },
+              expression: "content.question"
+            }
+          })
+        : _vm._e()
     ],
     1
   )
@@ -8963,9 +8937,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$f5d561', $f5d561);
+            api.createRecord('$19d773', $19d773);
           } else {
-            api.reload('$f5d561', $f5d561);
+            api.reload('$19d773', $19d773);
           }
         }
 
@@ -8975,16 +8949,16 @@ render._withStripped = true
 },{"vue-hot-reload-api":"../../../../node_modules/vue-hot-reload-api/dist/index.js","vue":"../../../../node_modules/vue/dist/vue.runtime.esm.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
-var _slideblock = _interopRequireDefault(require("./components/slideblock.vue"));
+var _JotForm = _interopRequireDefault(require("./components/JotForm.vue"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 panel.plugin('jonataneriksson/kirby-slide-block', {
   blocks: {
-    slide: _slideblock.default
+    jotform: _JotForm.default
   }
 });
-},{"./components/slideblock.vue":"components/slideblock.vue"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./components/JotForm.vue":"components/JotForm.vue"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -9012,7 +8986,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51111" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49173" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
