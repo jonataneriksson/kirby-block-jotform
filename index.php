@@ -12,8 +12,8 @@ Kirby::plugin('jonataneriksson/kirby-jotform-block', [
           'action'  => function () {
 
             $json = (object)[];
-            $jotformAPI = new JotForm("196ff34293fa2e5de7229faf20");
-            $json = $jotformAPI->getFormQuestions("211382720050038");
+            $jotformAPI = new JotForm(option('jotform.key'));
+            $json = $jotformAPI->getFormQuestions(option('jotform.form'));
 
             //createFormSubmission
             return Response::json($json);
@@ -30,8 +30,8 @@ Kirby::plugin('jonataneriksson/kirby-jotform-block', [
           //NO POST DATA
           if( !isset($_POST['fromPerson']) )
           {
-            $jotformAPI = new JotForm("196ff34293fa2e5de7229faf20");
-            $json = (array) $jotformAPI->getFormQuestions("211382720050038");
+            $jotformAPI = new JotForm(option('jotform.key'));
+            $json = (array) $jotformAPI->getFormQuestions(option('jotform.form'));
           }
 
           //POST DATA
