@@ -2,6 +2,7 @@
     "name": "jonataneriksson/kirby-block-jotform",
     "description": "Kirby Jotform Block Plugin",
     "type": "kirby-plugin",
+    "version" : "0.1.0",
     "license": "MIT",
     "authors": [
       {

@@ -1,4 +1,10 @@
 {
+  "name": "jonataneriksson/kirby-json",
+  "description": "Kirby CMS content as JSON API object.",
+  "author": "Jonatan Eriksson <jonatan.eriksson@gmail.com>",
+  "version" : "0.1.0",
+  "license": "MIT",
+  "type": "kirby-plugin",
   "scripts": {
     "dev": "parcel watch src/index.js --no-source-maps -d ./",
     "build": "parcel build src/index.js --no-source-maps --experimental-scope-hoisting -d ./"
